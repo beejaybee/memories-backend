@@ -11,7 +11,7 @@ export const getPosts = async (req, res) => {
 
         const total = await PostModel.countDocuments({});
         
-        const posts = await PostModel.find().sort({_id: -1}).limit(LIMIT).skip(startIndex);
+        const posts = await PostModel.find().sort({_id: -1}).limit(LIMIT).Math.abs(skip(startIndex));
         
         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
 
