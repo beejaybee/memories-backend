@@ -9,7 +9,7 @@ import UserModel from '../models/userModel.js';
 dotenv.config();
 
 
-const secret = process.env.JWT_TOKEN
+const secret = process.env.JWT_SECRET;
 
 
 export const signin = async (req, res) => {
