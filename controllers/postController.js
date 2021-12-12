@@ -7,11 +7,11 @@ export const getPosts = async (req, res) => {
     try {
         const LIMIT = 9;
 
-        const startIndex = (Number(page) - 1) * LIMIT; //get the starting index of every page
+        const startIndex = Math.abs((Number(page) - 1) * LIMIT); //get the starting index of every page
 
         const total = await PostModel.countDocuments({});
         
-        const posts = await PostModel.find().sort({_id: -1}).limit(LIMIT).Math.abs(skip(startIndex));
+        const posts = await PostModel.find().sort({_id: -1}).limit(LIMIT).skip(startIndex);
         
         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
 
